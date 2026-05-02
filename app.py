@@ -9,10 +9,10 @@ app = Flask(__name__)
 # Allowing frontend website to talk to this backend
 CORS(app, resources={r"/*": {"origins": "*"}})
 
-# ==========================================
+
 # 🔑 TWO SEPARATE API KEYS CONFIGURATION
-# ==========================================
-# Yahan apni dono API keys alag alag paste karein:
+
+
 API_KEY_ORACLE = ""
 API_KEY_TUTOR = ""
 
@@ -25,7 +25,7 @@ except Exception as e:
 
 # ==========================================
 # SYSTEM PROMPT FOR BOT 1: THE ORACLE
-# ==========================================
+
 system_instruction = """
 You are the official 'Olympiad Oracle' for a Pakistani student resource hub.
 You help students prepare for the NSTC (National Science Talent Contest), specifically the NMTC (Math), NPTC (Physics), NBTC (Biology), and NCTC (Chemistry).
@@ -79,9 +79,8 @@ def chat():
             )
             return jsonify({"reply": response.text})
 
-        # ==========================================
+        
         # BOT 2: AI TUTOR (Uses client_tutor)
-        # ==========================================
         elif bot_id == 2:
             history_array = data.get('history', [])
             if not history_array:
