@@ -103,11 +103,14 @@ def chat():
         if (bot_id == 1):
             system_instruction_oracle = getSystemPrompt(bot_id=1)
 
-            combined_input = f"{system_instruction_oracle}\n\nUser: {user_message}"
+           # combined_input = f"{system_instruction_oracle}\n\nUser: {user_message}"
 
             response = client_oracle.models.generate_content(
                 model='gemma-4-31b-it',
-                contents=combined_input
+                contents=user_message
+                config=types.GenerateContentConfig(
+                    system_instruction=system_instruction_oracle
+                )
             )
             
             return jsonify({"reply": response.text})
